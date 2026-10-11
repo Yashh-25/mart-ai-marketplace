@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MART | India's B2B Marketplace</title>
+
+<style>
+:root {
+  --blue: #0877bd;
+  --dark-blue: #075a91;
+  --orange: #f58220;
+  --text: #242b33;
+  --muted: #687786;
+  --border: #e0e7ed;
+  --bg: #f5f7fa;
+  --white: #fff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.top-strip {
+  background: #064d7b;
+  color: white;
+  padding: 9px 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+header {
+  background: white;
+  padding: 17px 5%;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-size: 31px;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -1.5px;
+  white-space: nowrap;
+}
+
+.logo span { color: var(--orange); }
+
+.search-wrap {
+  display: flex;
+  flex: 1;
+  max-width: 700px;
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 150px;
+}
+
+.search-wrap input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  padding: 13px;
+}
+
+.search-wrap button {
+  background: var(--orange);
+  color: white;
+  border: 0;
+  padding: 0 25px;
+  font-weight: bold;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.header-actions button {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  background: white;
+  border-radius: 4px;
+  padding: 10px 17px;
+}
+
+.header-actions .sell {
+  background: var(--orange);
+  color: white;
+  border-color: var(--orange);
+  font-weight: bold;
+}
+
+.nav {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 28px;
+  padding: 14px 5%;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.nav a:hover { color: var(--blue); }
+
+main { padding: 24px 5%; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 25px;
+  background: #e8f4fc;
+  border: 1px solid #d4e9f8;
+  border-radius: 8px;
+  padding: 36px;
+  overflow: hidden;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 3vw, 42px);
+  line-height: 1.2;
+  margin: 15px 0;
+  max-width: 650px;
+}
+
+.hero-copy {
+  color: #526778;
+  line-height: 1.7;
+  max-width: 570px;
+  font-size: 15px;
+}
+
+.hero-search {
+  display: flex;
+  max-width: 580px;
+  margin-top: 24px;
+  background: white;
+  border: 1px solid #d8e0e7;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.hero-search input {
+  border: 0;
+  outline: 0;
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+}
+
+.primary-btn {
+  background: var(--orange);
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 12px 19px;
+  font-weight: bold;
+}
+
+.hero-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.secondary-btn {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  background: white;
+  padding: 11px 15px;
+  border-radius: 4px;
+}
+
+.hero-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.benefit {
+  background: white;
+  border: 1px solid #e3edf5;
+  border-radius: 6px;
+  padding: 17px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.benefit-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e5f4ff;
+  font-size: 20px;
+}
+
+.benefit strong { font-size: 14px; }
+.benefit p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+
+.section { margin-top: 34px; }
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 { margin: 0; font-size: 23px; }
+.section-heading p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+.section-heading a { color: var(--blue); font-size: 13px; }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.category-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 10px;
+  text-align: center;
+  transition: .2s;
+}
+
+.category-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px #0000000c;
+}
+
+.category-card .emoji {
+  font-size: 31px;
+  display: block;
+  margin-bottom: 13px;
+}
+
+.category-card strong { font-size: 12px; line-height: 1.5; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: .2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 5px 18px #19344a12;
+  transform: translateY(-2px);
+}
+
+.product-image {
+  height: 155px;
+  display: grid;
+  place-items: center;
+  background: #edf4f9;
+  font-size: 58px;
+}
+
+.product-info { padding: 16px; }
+
+.tag {
+  display: inline-block;
+  color: var(--blue);
+  background: #eaf5fc;
+  padding: 5px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.product-info h3 {
+  font-size: 15px;
+  margin: 12px 0;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+.price { font-weight: bold; font-size: 19px; margin: 8px 0; }
+.price small { font-weight: normal; color: var(--muted); font-size: 11px; }
+
+.supplier, .location { color: var(--muted); font-size: 12px; margin: 8px 0; }
+
+.quote-btn {
+  width: 100%;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  background: white;
+  border-radius: 4px;
+  padding: 11px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.quote-btn:hover { background: var(--blue); color: white; }
+
+.supplier-banner {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--orange);
+  border-radius: 6px;
+  padding: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.supplier-banner h2 { margin: 0 0 9px; font-size: 21px; }
+.supplier-banner p { margin: 0; color: var(--muted); font-size: 13px; }
+
+footer {
+  background: #fff;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding: 28px 5%;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+footer .logo { font-size: 25px; }
+
+.ai-launcher {
+  position: fixed;
+  right: 25px;
+  bottom: 24px;
+  z-index: 100;
+  background: var(--blue);
+  color: white;
+  border: 0;
+  border-radius: 30px;
+  padding: 15px 21px;
+  box-shadow: 0 5px 20px #064d7b44;
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.ai-launcher:hover { background: var(--dark-blue); }
+
+.chat-panel {
+  position: fixed;
+  z-index: 101;
+  right: 25px;
+  bottom: 90px;
+  width: 360px;
+  max-width: calc(100vw - 30px);
+  height: 460px;
+  max-height: calc(100vh - 120px);
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px #102b3b25;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-panel[hidden] { display: none; }
+
+.chat-header {
+  background: var(--blue);
+  color: white;
+  padding: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header p { margin: 5px 0 0; font-size: 11px; opacity: .85; }
+
+.chat-header button {
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 26px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  background: #f7f9fb;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chat-bubble {
+  padding: 11px 13px;
+  border-radius: 10px;
+  max-width: 90%;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bot-message { background: white; border: 1px solid var(--border); align-self: flex-start; }
+.user-message { background: #dceefa; align-self: flex-end; }
+
+.chat-form {
+  display: flex;
+  gap: 7px;
+  padding: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.chat-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  outline-color: var(--blue);
+}
+
+.chat-form button {
+  border: 0;
+  border-radius: 5px;
+  background: var(--orange);
+  color: white;
+  padding: 0 15px;
+}
+
+@media (max-width: 1050px) {
+  header { flex-wrap: wrap; gap: 15px; }
+  .search-wrap { order: 3; max-width: none; flex-basis: 100%; }
+  .header-actions { margin-left: auto; }
+  .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 650px) {
+  .top-strip { padding: 8px 4%; }
+  .top-strip span:last-child { display: none; }
+  header { padding: 14px 4%; }
+  .header-actions { gap: 10px; }
+  .header-actions a { display: none; }
+  .nav { padding: 13px 4%; gap: 20px; }
+  main { padding: 15px 4%; }
+  .hero { grid-template-columns: 1fr; padding: 23px 18px; }
+  .hero-aside { display: grid; grid-template-columns: 1fr; }
+  .hero-search button { padding: 10px; font-size: 12px; }
+  .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .product-image { height: 115px; font-size: 43px; }
+  .product-info { padding: 11px; }
+  .product-info h3 { font-size: 13px; }
+  .price { font-size: 16px; }
+  .supplier-banner { align-items: flex-start; flex-direction: column; }
+  .section-heading h2 { font-size: 20px; }
+  .ai-launcher { right: 15px; bottom: 15px; }
+  .chat-panel { right: 15px; bottom: 78px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip">
+  <span>India's B2B Marketplace</span>
+  <span>Connect with Manufacturers, Wholesalers & Suppliers</span>
+</div>
+
+<header>
+  <a class="logo" href="#">MART<span>.</span></a>
+
+  <form class="search-wrap" id="topSearchForm">
+    <input id="topSearch" placeholder="Enter product or service to search">
+    <button type="submit">Search</button>
+  </form>
+
+  <nav class="header-actions">
+    <a href="#categories">Categories</a>
+    <a href="#suppliers">Suppliers</a>
+    <button type="button" id="signInBtn">Sign In</button>
+    <button type="button" class="sell" id="sellBtn">Sell</button>
+  </nav>
+</header>
+
+<nav class="nav">
+  <a href="#categories">All Categories</a>
+  <a href="#products">Industrial Machinery</a>
+  <a href="#products">Electronics</a>
+  <a href="#products">Building Materials</a>
+  <a href="#products">Agriculture</a>
+  <a href="#products">Packaging</a>
+  <a href="#products">Textiles</a>
+  <a href="#suppliers">Find Suppliers</a>
+</nav>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">YOUR BUSINESS. BETTER SOURCING.</p>
+      <h1>Find Products &<br>Trusted Suppliers</h1>
+      <p class="hero-copy">
+        Explore business products, compare supplier options,
+        and discover solutions for your sourcing needs.
+      </p>
+
+      <form class="hero-search" id="heroSearchForm">
+        <input id="heroSearchInput" placeholder="What product are you looking for?">
+        <button class="primary-btn" type="submit">Search</button>
+      </form>
+
+      <div class="hero-links">
+        <button class="secondary-btn" id="postRequirement">Post Your Requirement</button>
+        <button class="secondary-btn" id="exploreBtn">Explore Products ↓</button>
+      </div>
+    </div>
+
+    <div class="hero-aside">
+      <div class="benefit">
+        <div class="benefit-icon">🔎</div>
+        <div><strong>Discover Products</strong><p>Explore business essentials</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🤝</div>
+        <div><strong>Connect with Suppliers</strong><p>Find relevant businesses</p></div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">✦</div>
+        <div><strong>AI Sourcing Assistant</strong><p>Get help finding the right match</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="section-heading">
+      <div><h2>Browse by Category</h2><p>Explore products across business categories</p></div>
+      <a href="#products">View Products →</a>
+    </div>
+
+    <div class="category-grid">
+      <button class="category-card" data-category="Industrial Machinery"><span class="emoji">⚙️</span><strong>Industrial Machinery</strong></button>
+      <button class="category-card" data-category="Electronics"><span class="emoji">💡</span><strong>Electronics</strong></button>
+      <button class="category-card" data-category="Building Materials"><span class="emoji">🏗️</span><strong>Building Materials</strong></button>
+      <button class="category-card" data-category="Agriculture"><span class="emoji">🌾</span><strong>Agriculture</strong></button>
+      <button class="category-card" data-category="Packaging"><span class="emoji">📦</span><strong>Packaging</strong></button>
+      <button class="category-card" data-category="Textiles"><span class="emoji">🧵</span><strong>Textiles & Garments</strong></button>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="section-heading">
+      <div><h2>Popular Products</h2><p>Example listings for your marketplace prototype</p></div>
+      <a href="#suppliers">Find Suppliers →</a>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <article class="product-card" data-category="Industrial Machinery" data-name="Industrial Air Compressor">
+        <div class="product-image">⚙️</div>
+        <div class="product-info">
+          <span class="tag">Industrial</span><h3>Industrial Air Compressor</h3>
+          <p class="price">₹25,000 <small>/ Piece</small></p>
+          <p class="supplier">Precision Industrial Supplies</p><p class="location">Pune, Maharashtra</p>
+          <button class="quote-btn" data-product="Industrial Air Compressor">Get Best Quote</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="Electronics" data-name="LED Industrial Light">
+        <div class="product-image">💡</div>
+        <div class="product-info">
+          <span class="tag">Electronics</span><h3>LED Industrial Light</h3>
+          <p class="price">₹850 <small>/ Piece</small></p>
+          <p class="supplier">Bright Electrical Traders</p><p class="location">Delhi, India</p>
+          <button class="quote-btn" data-product="LED Industrial Light">Get Best Quote</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="Building Materials" data-name="Stainless Steel Pipes">
+        <div class="product-image">🏗️</div>
+        <div class="product-info">
+          <span class="tag">Construction</span><h3>Stainless Steel Pipes</h3>
+          <p class="price">₹180 <small>/ Kg</small></p>
+          <p class="supplier">National Steel Traders</p><p class="location">Mumbai, Maharashtra</p>
+          <button class="quote-btn" data-product="Stainless Steel Pipes">Get Best Quote</button>
+        </div>
+      </article>
+
+      <article class="product-card" data-category="Packaging" data-name="Corrugated Packaging Boxes">
+        <div class="product-image">📦</div>
+        <div class="product-info">
+          <span class="tag">Packaging</span><h3>Corrugated Packaging Boxes</h3>
+          <p class="price">₹18 <small>/ Piece</small></p>
+          <p class="supplier">Reliable Packaging Co.</p><p class="location">Ahmedabad, Gujarat</p>
+          <button class="quote-btn" data-product="Corrugated Packaging Boxes">Get Best Quote</button>
+        </div>
+      </article>
+    </div>
+    <p id="noResults" hidden>No matching demo products found. Try another search.</p>
+  </section>
+
+  <section class="section supplier-banner" id="suppliers">
+    <div><h2>Looking for a reliable supplier?</h2><p>Tell us your requirement and explore suitable supplier options.</p></div>
+    <button class="primary-btn" id="findSuppliers">Find Suppliers</button>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#">MART<span>.</span></a>
+  <p>Connecting buyers and suppliers across India.</p>
+  <p>Educational prototype. Listings and prices are sample data, not verified offers.</p>
+</footer>
+
+<button class="ai-launcher" id="aiLauncher"><span>✦</span><span>Ask AI</span></button>
+
+<section class="chat-panel" id="chatPanel" hidden>
+  <div class="chat-header">
+    <div><strong>MART AI Assistant</strong><p>Product and supplier discovery</p></div>
+    <button id="closeChat" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-bubble bot-message">Hi! Tell me what product you need, your budget, or your preferred location. I'll help you find suitable options.</div>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" placeholder="Ask about a product or supplier..." autocomplete="off" required>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<script>
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
+
+function searchProducts(query) {
+  const term = query.trim().toLowerCase();
+  let visible = 0;
+
+  $$('.product-card').forEach(card => {
+    const matches = !term ||
+      (card.innerText + ' ' + card.dataset.category).toLowerCase().includes(term);
+    card.hidden = !matches;
+    if (matches) visible++;
+  });
+
+  $('#noResults').hidden = visible > 0;
+  $('#products').scrollIntoView({ behavior: 'smooth' });
+}
+
+$('#topSearchForm').addEventListener('submit', event => {
+  event.preventDefault();
+  searchProducts($('#topSearch').value);
+});
+
+$('#heroSearchForm').addEventListener('submit', event => {
+  event.preventDefault();
+  $('#topSearch').value = $('#heroSearchInput').value;
+  searchProducts($('#heroSearchInput').value);
+});
+
+$$('.category-card').forEach(button => {
+  button.addEventListener('click', () => {
+    searchProducts(button.dataset.category);
+  });
+});
+
+$('#exploreBtn').addEventListener('click', () => {
+  $('#products').scrollIntoView({ behavior: 'smooth' });
+});
+
+function openChat(message) {
+  $('#chatPanel').hidden = false;
+  if (message) {
+    $('#chatInput').value = message;
+    $('#chatInput').focus();
+  }
+}
+
+$('#aiLauncher').addEventListener('click', () => openChat());
+$('#closeChat').addEventListener('click', () => {
+  $('#chatPanel').hidden = true;
+});
+
+function addMessage(message, type) {
+  const bubble = document.createElement('div');
+  bubble.className = 'chat-bubble ' + type;
+  bubble.textContent = message;
+  $('#chatMessages').appendChild(bubble);
+  $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+}
+
+
+async function askAI(message) {
+  try {
+    const response = await fetch('/api/chat', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "AI request failed.");
+    }
+
+    return data.reply || "No answer was returned.";
+  } catch (error) {
+    return "Error: " + error.message;
+  }
+}
+
+$('#chatForm').addEventListener('submit', async event => {
+  event.preventDefault();
+
+  const input = $('#chatInput');
+  const message = input.value.trim();
+  if (!message) return;
+
+  addMessage(message, 'user-message');
+  input.value = '';
+
+  const pending = document.createElement('div');
+  pending.className = 'chat-bubble bot-message';
+  pending.textContent = 'Checking your request...';
+  $('#chatMessages').appendChild(pending);
+  $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+
+  const reply = await askAI(message);
+  pending.textContent = reply;
+});
+
+$$('.quote-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    openChat('I am interested in ' + button.dataset.product +
+      '. Please help me find suppliers and compare quotations.');
+  });
+});
+
+$('#findSuppliers').addEventListener('click', () => {
+  openChat('Help me find suppliers for my business requirement.');
+});
+
+$('#postRequirement').addEventListener('click', () => {
+  openChat('I want to post a product requirement. Please help me describe it.');
+});
+
+$('#signInBtn').addEventListener('click', () => {
+  alert('Sign-in functionality will be added in a later step.');
+});
+
+$('#sellBtn').addEventListener('click', () => {
+  alert('Supplier registration will be added in a later step.');
+});
+</script>
+
+</body>
+</html>
