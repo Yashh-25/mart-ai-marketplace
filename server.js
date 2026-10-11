@@ -98,6 +98,7 @@ app.get("/api/health", (req, res) => {
 
 // Chat endpoint for the frontend.
 app.post("/api/chat", async (req, res) => {
+    console.log("MART CHAT REQUEST RECEIVED");
   try {
     const message = req.body?.message?.trim();
 
@@ -124,6 +125,7 @@ app.post("/api/chat", async (req, res) => {
         error: "Gemini API key is missing. Add GEMINI_API_KEY to your .env file."
       });
     }
+    
 
     const [products, suppliers, buyers] = await Promise.all([
       readSheet("Products"),
@@ -175,7 +177,7 @@ ${message}
     });
 
   } catch (error) {
-    console.error("Chat error:", error.message);
+    console.error("Chat error:", error);
 
     res.status(500).json({
       error: "The AI request failed. Check the server terminal and try again."
