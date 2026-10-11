@@ -9,7 +9,10 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 
 dotenv.config();
-
+console.log(
+  "Gemini API key configured:",
+  Boolean(process.env.GEMINI_API_KEY)
+);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
